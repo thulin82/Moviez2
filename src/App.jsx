@@ -1,9 +1,11 @@
-import React from "react";
+import Main from "./Main/Main";
+import Header from "./Header/Header";
 
 const App = () => {
     return (
         <div>
-            <h1>Moviez</h1>
+            <Header />
+            <Main />
         </div>
     );
 };
