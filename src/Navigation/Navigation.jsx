@@ -1,9 +1,12 @@
 import "./Navigation.css";
+import Selection from "./Selection";
 
 const Navigation = () => {
     return (
         <>
-            <section className="navigation">Navigation</section>
+            <section className="navigation">
+                <Selection />
+            </section>
         </>
     );
 };
