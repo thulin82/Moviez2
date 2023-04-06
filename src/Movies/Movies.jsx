@@ -14,17 +14,39 @@ const Movies = () => {
 
         fetch(apiUrl)
             .then((response) => response.json())
-            .then((data) => setMovies(data.results))
+            .then((data) => storeMovies(data))
             .catch((error) => console.log(error));
 
-        console.log("Before or after data?");
+        const storeMovies = (data) => {
+            const movies = data.results.map((result) => {
+                const {
+                    vote_count,
+                    id,
+                    genre_ids,
+                    poster_path,
+                    title,
+                    vote_average,
+                    release_date,
+                } = result;
+                return {
+                    vote_count,
+                    id,
+                    genre_ids,
+                    poster_path,
+                    title,
+                    vote_average,
+                    release_date,
+                };
+            });
+            setMovies(movies);
+        };
     }, []);
 
     return (
         <section>
             <ul className="movies">
-                {movies.map((movie, index) => (
-                    <MovieListItem key={index.toString()} title={movie.title} />
+                {movies.map((movie) => (
+                    <MovieListItem key={movie.id} movie={movie} />
                 ))}
             </ul>
         </section>
