@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Navigation.css";
 import Selection from "./Selection";
 import Slider from "./Slider";
 
 const Navigation = () => {
     const [genre, setGenre] = useState("comedy");
+    const [genres, setGenres] = useState([]);
     const [year, setYear] = useState({
         label: "Year",
         min: 1990,
@@ -26,6 +27,17 @@ const Navigation = () => {
         step: 15,
         value: { min: 60, max: 120 },
     });
+
+    useEffect(() => {
+        const genreApiUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${
+            import.meta.env.VITE_TMDB_API_KEY
+        }&language=en-US`;
+
+        fetch(genreApiUrl)
+            .then((response) => response.json())
+            .then((data) => setGenres(data.genres))
+            .catch((error) => console.log(error));
+    }, []);
 
     const onGenreChange = (event) => {
         setGenre(event.target.value);
@@ -58,7 +70,11 @@ const Navigation = () => {
 
     return (
         <section className="navigation">
-            <Selection genre={genre} onGenreChange={onGenreChange} />
+            <Selection
+                genres={genres}
+                genre={genre}
+                onGenreChange={onGenreChange}
+            />
             <Slider data={year} onChange={onChange} />
             <Slider data={rating} onChange={onChange} />
             <Slider data={runtime} onChange={onChange} />
