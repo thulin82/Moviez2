@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./Movies.css";
-import MovieListItem from "./MovieListitem";
+import MovieListItem from "./MovieListItem";
 
 const movies = ["The Godfather", "The Shawshank Redemption", "The Dark Knight"];
 
