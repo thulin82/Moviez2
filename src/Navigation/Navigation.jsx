@@ -45,19 +45,19 @@ const Navigation = () => {
 
     const onChange = (data) => {
         switch (data.type) {
-            case "year":
+            case "Year":
                 setYear((prevYear) => ({
                     ...prevYear,
                     value: data.value,
                 }));
                 break;
-            case "rating":
+            case "Rating":
                 setRating((prevRating) => ({
                     ...prevRating,
                     value: data.value,
                 }));
                 break;
-            case "runtime":
+            case "Runtime":
                 setRuntime((prevRuntime) => ({
                     ...prevRuntime,
                     value: data.value,
