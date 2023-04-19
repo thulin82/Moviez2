@@ -6,9 +6,13 @@ import Movies from "../Movies/Movies";
 const genreUrl = `https://api.themoviedb.org/3/genre/movie/list?api_key=${
     import.meta.env.VITE_TMDB_API_KEY
 }&language=en-US`;
+const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${
+    import.meta.env.VITE_TMDB_API_KEY
+}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`;
 
 const Main = () => {
     const [url, setUrl] = useState(genreUrl);
+    const [movies, setMovies] = useState(movieUrl);
     const [genre, setGenre] = useState("comedy");
     const [genres, setGenres] = useState([]);
     const [year, setYear] = useState({
@@ -35,6 +39,10 @@ const Main = () => {
 
     const onGenreChange = (event) => {
         setGenre(event.target.value);
+    };
+
+    const onSearchButtonClick = () => {
+        console.log("click!");
     };
 
     const onChange = (data) => {
@@ -68,6 +76,7 @@ const Main = () => {
                 onChange={onChange}
                 onGenreChange={onGenreChange}
                 setGenres={setGenres}
+                onSearchButtonClick={onSearchButtonClick}
                 genre={genre}
                 genres={genres}
                 year={year}

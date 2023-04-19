@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import "./Navigation.css";
 import Selection from "./Selection";
 import Slider from "./Slider";
+import SearchButton from "./SearchButton";
 
 const Navigation = (props) => {
     const {
@@ -9,6 +10,7 @@ const Navigation = (props) => {
         genres,
         onGenreChange,
         onChange,
+        onSearchButtonClick,
         year,
         rating,
         runtime,
@@ -32,6 +34,8 @@ const Navigation = (props) => {
             <Slider data={year} onChange={onChange} />
             <Slider data={rating} onChange={onChange} />
             <Slider data={runtime} onChange={onChange} />
+
+            <SearchButton onClick={onSearchButtonClick} />
         </section>
     );
 };
