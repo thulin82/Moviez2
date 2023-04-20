@@ -37,12 +37,32 @@ const Main = () => {
         value: { min: 60, max: 120 },
     });
 
+    const generateUrl = () => {
+        const selectedGenre = genres.find((g) => g.name === genre);
+        const genreId = selectedGenre.id;
+
+        const createdUrl =
+            `https://api.themoviedb.org/3/discover/movie?` +
+            `api_key=${import.meta.env.VITE_TMDB_API_KEY}&` +
+            `language=en-US&sort_by=popularity.desc&` +
+            `with_genres=${genreId}&` +
+            `primary_release_date.gte=${year.value.min}-01-01&` +
+            `primary_release_date.lte=${year.value.max}-12-31&` +
+            `vote_average.gte=${rating.value.min}&` +
+            `vote_average.lte=${rating.value.max}&` +
+            `with_runtime.gte=${runtime.value.min}&` +
+            `with_runtime.lte=${runtime.value.max}&` +
+            `page=1&`;
+
+        setMovies(createdUrl);
+    };
+
     const onGenreChange = (event) => {
         setGenre(event.target.value);
     };
 
     const onSearchButtonClick = () => {
-        console.log("click!");
+        generateUrl();
     };
 
     const onChange = (data) => {
@@ -84,7 +104,7 @@ const Main = () => {
                 runtime={runtime}
                 url={url}
             />
-            <Movies />
+            <Movies url={movies} />
         </section>
     );
 };
