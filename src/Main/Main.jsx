@@ -12,9 +12,11 @@ const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${
 
 const Main = () => {
     const [url, setUrl] = useState(genreUrl);
-    const [movies, setMovies] = useState(movieUrl);
+    const [moviesUrl, setMoviesUrl] = useState(movieUrl);
     const [genre, setGenre] = useState("comedy");
     const [genres, setGenres] = useState([]);
+    const [totalPages, setTotalPages] = useState(1);
+    const [page, setPage] = useState(1);
     const [year, setYear] = useState({
         label: "Year",
         min: 1990,
@@ -52,9 +54,9 @@ const Main = () => {
             `vote_average.lte=${rating.value.max}&` +
             `with_runtime.gte=${runtime.value.min}&` +
             `with_runtime.lte=${runtime.value.max}&` +
-            `page=1&`;
+            `page=${page}`;
 
-        setMovies(createdUrl);
+        setMoviesUrl(createdUrl);
     };
 
     const onGenreChange = (event) => {
@@ -104,7 +106,7 @@ const Main = () => {
                 runtime={runtime}
                 url={url}
             />
-            <Movies url={movies} />
+            <Movies url={moviesUrl} />
         </section>
     );
 };
