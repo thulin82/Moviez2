@@ -13,16 +13,17 @@ const movieUrl = `https://api.themoviedb.org/3/discover/movie?api_key=${
 const Main = () => {
     const [url, setUrl] = useState(genreUrl);
     const [moviesUrl, setMoviesUrl] = useState(movieUrl);
-    const [genre, setGenre] = useState("comedy");
+    const [genre, setGenre] = useState("Comedy");
     const [genres, setGenres] = useState([]);
+    const [movies, setMovies] = useState([]);
     const [totalPages, setTotalPages] = useState(1);
     const [page, setPage] = useState(1);
     const [year, setYear] = useState({
         label: "Year",
         min: 1990,
-        max: 2017,
+        max: 2023,
         step: 1,
-        value: { min: 2000, max: 2017 },
+        value: { min: 2010, max: 2023 },
     });
     const [rating, setRating] = useState({
         label: "Rating",
@@ -38,6 +39,42 @@ const Main = () => {
         step: 15,
         value: { min: 60, max: 120 },
     });
+
+    useEffect(() => {
+        fetchMovies(moviesUrl);
+    }, [moviesUrl]);
+
+    const fetchMovies = (m_url) => {
+        fetch(m_url)
+            .then((response) => response.json())
+            .then((data) => storeMovies(data))
+            .catch((error) => console.log(error));
+    };
+
+    const storeMovies = (data) => {
+        const movies = data.results.map((result) => {
+            const {
+                vote_count,
+                id,
+                genre_ids,
+                poster_path,
+                title,
+                vote_average,
+                release_date,
+            } = result;
+            return {
+                vote_count,
+                id,
+                genre_ids,
+                poster_path,
+                title,
+                vote_average,
+                release_date,
+            };
+        });
+        setMovies(movies);
+        setTotalPages(data.total_pages);
+    };
 
     const generateUrl = () => {
         const selectedGenre = genres.find((g) => g.name === genre);
@@ -106,7 +143,7 @@ const Main = () => {
                 runtime={runtime}
                 url={url}
             />
-            <Movies url={moviesUrl} />
+            <Movies movies={movies} />
         </section>
     );
 };
