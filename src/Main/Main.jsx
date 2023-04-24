@@ -44,6 +44,10 @@ const Main = () => {
         fetchMovies(moviesUrl);
     }, [moviesUrl]);
 
+    useEffect(() => {
+        generateUrl();
+    }, [page]);
+
     const fetchMovies = (m_url) => {
         fetch(m_url)
             .then((response) => response.json())
@@ -78,6 +82,12 @@ const Main = () => {
 
     const generateUrl = () => {
         const selectedGenre = genres.find((g) => g.name === genre);
+
+        if (!selectedGenre) {
+            console.log(`Genre with name ${genre} not found.`);
+            return;
+        }
+
         const genreId = selectedGenre.id;
 
         const createdUrl =
@@ -101,6 +111,7 @@ const Main = () => {
     };
 
     const onSearchButtonClick = () => {
+        setPage(1);
         generateUrl();
     };
 
