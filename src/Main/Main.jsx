@@ -115,6 +115,20 @@ const Main = () => {
         generateUrl();
     };
 
+    const onPageIncrease = () => {
+        const nextPage = page + 1;
+        if (nextPage <= totalPages) {
+            setPage(nextPage);
+        }
+    };
+
+    const onPageDecrease = () => {
+        const nextPage = page - 1;
+        if (nextPage > 0) {
+            setPage(nextPage);
+        }
+    };
+
     const onChange = (data) => {
         switch (data.type) {
             case "Year":
@@ -154,7 +168,12 @@ const Main = () => {
                 runtime={runtime}
                 url={url}
             />
-            <Movies movies={movies} />
+            <Movies
+                movies={movies}
+                page={page}
+                onPageIncrease={onPageIncrease}
+                onPageDecrease={onPageDecrease}
+            />
         </section>
     );
 };
