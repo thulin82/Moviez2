@@ -16,7 +16,9 @@ const App = () => {
                     <Route path="/movies/:movieId">
                         <Movie />
                     </Route>
-                    <Route component={NotFound} />
+                    <Route>
+                        <NotFound />
+                    </Route>
                 </Switch>
             </div>
         </BrowserRouter>
