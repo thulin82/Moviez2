@@ -129,6 +129,13 @@ const Main = () => {
         }
     };
 
+    const saveStateToLocalStorage = () => {
+        localstorage.setItem(
+            "moviez.params",
+            JSON.stringify({ year, rating, runtime })
+        );
+    };
+
     const onChange = (data) => {
         switch (data.type) {
             case "Year":
