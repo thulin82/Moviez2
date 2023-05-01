@@ -136,6 +136,10 @@ const Main = () => {
         );
     };
 
+    const getStateFromLocalStorage = () => {
+        return JSON.parse(localStorage.getItem("moviez.params"));
+    };
+
     const onChange = (data) => {
         switch (data.type) {
             case "Year":
