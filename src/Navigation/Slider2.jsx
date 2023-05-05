@@ -6,7 +6,7 @@ import {
     RangeSliderMark,
 } from "@chakra-ui/react";
 import { useState } from "react";
-import "./Slider.css";
+import "./Slider2.css";
 
 const Slider2 = () => {
     const [sliderValue, setSliderValue] = useState([60, 120]);
