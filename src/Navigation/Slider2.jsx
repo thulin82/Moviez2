@@ -8,8 +8,12 @@ import {
 import { useState } from "react";
 import "./Slider2.css";
 
-const Slider2 = () => {
+const Slider2 = (props) => {
+    const { min, max, step, value, label } = props.data;
     const [sliderValue, setSliderValue] = useState([60, 120]);
+
+    console.log("Props: ", props.data);
+
     return (
         <div className="slider">
             <label>Runtime</label>
