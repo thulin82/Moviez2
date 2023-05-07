@@ -10,26 +10,27 @@ import "./Slider2.css";
 
 const Slider2 = (props) => {
     const { min, max, step, value, label } = props.data;
-    const [sliderValue, setSliderValue] = useState([60, 120]);
+    const [sliderValue, setSliderValue] = useState([value.min, value.max]);
 
     console.log("Props: ", props.data);
 
     return (
         <div className="slider">
-            <label>Runtime</label>
+            <label>{label}</label>
 
             <RangeSlider
-                defaultValue={[60, 120]}
-                min={0}
-                max={300}
+                defaultValue={[value.min, value.max]}
+                min={min}
+                max={max}
+                step={step}
                 onChange={(val) => setSliderValue(val)}
                 onChangeEnd={(val2) => console.log(val2)}
             >
-                <RangeSliderMark value={0} mt="1" ml="-2.5" fontSize="sm">
-                    0
+                <RangeSliderMark value={min} mt="1" ml="-2.5" fontSize="sm">
+                    {min}
                 </RangeSliderMark>
-                <RangeSliderMark value={300} mt="1" ml="-2.5" fontSize="sm">
-                    300
+                <RangeSliderMark value={max} mt="1" ml="-2.5" fontSize="sm">
+                    {max}
                 </RangeSliderMark>
                 <RangeSliderMark
                     value={sliderValue[0]}
