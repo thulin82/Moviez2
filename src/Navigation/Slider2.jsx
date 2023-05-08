@@ -12,7 +12,20 @@ const Slider2 = (props) => {
     const { min, max, step, value, label } = props.data;
     const [sliderValue, setSliderValue] = useState([value.min, value.max]);
 
-    console.log("Props: ", props.data);
+    const onChange = (event) => {
+        const range = {
+            min: Number(event[0]),
+            max: Number(event[1]),
+            value: {
+                min: Number(event[0]),
+                max: Number(event[1]),
+            },
+        };
+        props.onChange({
+            type: label,
+            value: range,
+        });
+    };
 
     return (
         <div className="slider">
@@ -24,7 +37,7 @@ const Slider2 = (props) => {
                 max={max}
                 step={step}
                 onChange={(val) => setSliderValue(val)}
-                onChangeEnd={(val2) => console.log(val2)}
+                onChangeEnd={onChange}
             >
                 <RangeSliderMark value={min} mt="1" ml="-2.5" fontSize="sm">
                     {min}
