@@ -32,9 +32,10 @@ const Navigation = (props) => {
                 genre={genre}
                 onGenreChange={onGenreChange}
             />
-            <Slider data={year} onChange={onChange} />
-            {/* <Slider data={rating} onChange={onChange} />
+            {/*<Slider data={year} onChange={onChange} />
+             <Slider data={rating} onChange={onChange} />
             <Slider data={runtime} onChange={onChange} /> */}
+            <Slider2 data={year} onChange={onChange} />
             <Slider2 data={rating} onChange={onChange} />
             <Slider2 data={runtime} onChange={onChange} />
 
