@@ -1,6 +1,6 @@
 import "./Movies.css";
 import MovieListItem from "./MovieListItem";
-import Button from "../Navigation/Button";
+import { Button } from "@chakra-ui/react";
 
 const Movies = ({ movies, page, onPageIncrease, onPageDecrease }) => {
     return (
@@ -11,9 +11,13 @@ const Movies = ({ movies, page, onPageIncrease, onPageDecrease }) => {
                 ))}
             </ul>
             <div className="pagination">
-                <Button onClick={onPageDecrease}>Previous</Button>
+                <Button bg="orange.500" color="white" onClick={onPageDecrease}>
+                    Previous
+                </Button>
                 <span>{`Page ${page}`}</span>
-                <Button onClick={onPageIncrease}>Next</Button>
+                <Button bg="orange.500" color="white" onClick={onPageIncrease}>
+                    Next
+                </Button>
             </div>
         </section>
     );

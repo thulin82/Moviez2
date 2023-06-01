@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { Button } from "@chakra-ui/react";
 import "./Navigation.css";
 import Selection from "./Selection";
 import Slider from "./Slider";
-import SearchButton from "./SearchButton";
 
 const Navigation = (props) => {
     const {
@@ -27,6 +27,7 @@ const Navigation = (props) => {
     return (
         <section className="navigation">
             <Selection
+                bg="orange.500"
                 genres={genres}
                 genre={genre}
                 onGenreChange={onGenreChange}
@@ -35,7 +36,9 @@ const Navigation = (props) => {
             <Slider data={rating} onChange={onChange} />
             <Slider data={runtime} onChange={onChange} />
 
-            <SearchButton onClick={onSearchButtonClick} />
+            <Button bg="orange.500" color="white" onClick={onSearchButtonClick}>
+                Search
+            </Button>
         </section>
     );
 };
