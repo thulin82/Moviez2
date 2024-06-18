@@ -21,9 +21,9 @@ const Main = () => {
     const [year, setYear] = useState({
         label: "Year",
         min: 1990,
-        max: 2023,
+        max: 2024,
         step: 1,
-        value: { min: 2010, max: 2023 },
+        value: { min: 2010, max: 2024 },
     });
     const [rating, setRating] = useState({
         label: "Rating",
